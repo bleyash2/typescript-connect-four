@@ -1,2 +1,1 @@
-# typescript-connect-four
-Simple Typescript Connect Four, To allow for AI Scripting of Behaviours
+# Very Simple Typescript Connect 4, This was built to allow people to experiment with writing the AI behaviour of a Connect Four Player :D
