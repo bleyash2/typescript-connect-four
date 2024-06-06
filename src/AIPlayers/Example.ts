@@ -9,7 +9,7 @@ export class Example extends Player {
     }
 
     // The MakeMove function is called when it is the AI's turn to make a move
-    // It simplely returns the column that the AI would like to drop a piece into.
+    // It simply returns the column that the AI would like to drop a piece into.
     // You have access to the current Board State in the form of a 2D array of numbers.
     // The numbers represent the player who has a piece in that cell.
     // 0 represents an empty cell
