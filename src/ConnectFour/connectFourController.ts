@@ -1,9 +1,12 @@
 import React from 'react'
 import { AIPlayer, AIPlayer2 } from './Player'
 import { Example } from '../AIPlayers/Example'
+import { Jason } from '../AIPlayers/Jason'
+import { Audi } from '../AIPlayers/Audi'
+import { NikBot } from '../AIPlayers/Nik'
+import { BruteForce } from '../AIPlayers/BruteForce'
 
-
-export type Board = (0|1|2)[][]
+export type Board = (0 | 1 | 2)[][]
 export type PlayerVal = 1 | 2
 export type EmptySpace = 0
 
@@ -11,16 +14,16 @@ export type EmptySpace = 0
 export const ROWS = 6
 export const COLS = 7
 
-const emptyBoard = () =>  Array.from({ length: ROWS }, () => Array(COLS).fill(0))
+const emptyBoard = () => Array.from({ length: ROWS }, () => Array(COLS).fill(0))
 
 
-export function useConnectFour() {
+export function useConnectFour () {
     // Instantiate the game board
     const [board, setBoard] = React.useState(emptyBoard())
-    const players = [new Example(1), new AIPlayer2(2)]
+    const players = [new BruteForce(1), new Jason(2)]
     const [turn, setTurn] = React.useState<PlayerVal>(1)
     const [winner, setWinner] = React.useState<PlayerVal | null | 0>(null)
-    
+
     const currentPlayer = players[turn - 1]
 
     const isGameOver = winner !== null
@@ -32,7 +35,7 @@ export function useConnectFour() {
         setTurn(Math.random() > 0.5 ? 1 : 2)
     }
 
-    function handleNextTurn() {
+    function handleNextTurn () {
         if (isGameOver) {
             return
         }
@@ -42,7 +45,7 @@ export function useConnectFour() {
         checkForWinner()
     }
 
-    function dropPiece(col: number) {
+    function dropPiece (col: number) {
         const newBoard = [...board]
         for (let row = ROWS - 1; row >= 0; row--) {
             if (newBoard[row][col] === 0) {
@@ -53,7 +56,7 @@ export function useConnectFour() {
         setBoard(newBoard)
     }
 
-    function checkForWinner() {
+    function checkForWinner () {
         // Check horizontal
         for (let row = 0; row < ROWS; row++) {
             for (let col = 0; col < COLS - 3; col++) {
@@ -113,12 +116,12 @@ export function useConnectFour() {
         if (board.every((row) => row.every((cell) => cell !== 0))) {
             setWinner(0)
         }
-    
+
     }
 
     const getColourForPlayer = (player: number) => {
         if (player === 1) {
-           return players[0].getColor()
+            return players[0].getColor()
         } else {
             return players[1].getColor()
         }
